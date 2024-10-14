@@ -1,0 +1,45 @@
+processors * * 1
+
+units           lj
+atom_style      angle
+dimension       3
+boundary        p p p
+
+
+read_data ./in.data
+special_bonds lj 0.0 1.0 1.0
+comm_style tiled
+neighbor 1. bin
+neigh_modify every 1 delay 1
+special_bonds lj 0 1 1
+
+
+include ./in.interaction.lmp
+
+# initial relaxation
+
+dump dump all atom 10 out.0.relax.traj.bin
+thermo 10
+thermo_style custom step dt time cpu fmax fnorm temp ke pe ebond eangle epair pxx pyy pzz
+thermo_modify flush yes
+
+min_style cg
+minimize 1e-4 1e-6 1000 10000
+
+fix langevin all langevin 1.0 1.0 1.0 1 zero yes
+velocity all create 1.0 1
+velocity all zero linear
+timestep        0.001
+fix f_nve all nve/limit 0.01
+run 10
+unfix f_nve
+unfix langevin
+undump dump
+
+# main run
+timestep        0.01
+dump dump all atom 1000 out.1.main.traj.bin
+fix langevin all langevin 1.0 1.0 1.0 1 zero yes
+fix f_nve all nve
+thermo 100
+run 100000
