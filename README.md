@@ -1,12 +1,20 @@
-# Archaeal coarse-grained membrane simulation examples
+# Archaeal membranes coarse-grained simulations : code & examples
+<p align="center">
+    <img src="https://github.com/user-attachments/assets/36bb5261-fd3a-416e-8eb2-bff4eb069bf9" width="50%" height="50%"/>
+</p>
 
+<p align="center">
+   flexible bolalipid ($k_\mathrm{bola}=0$) membrane patch 
+</p>
 <!-- Paper ref: to add -->
 Example simulation code for the upcoming paper on archaeal membranes.
 Code allows changing parameters.
 Current saved output for:
 
--  a flexible bolalipid membrane patch $k_\mathrm{bola}=0$ is in `./archaeal_patch`. Command used:
-    `cd archaeal_patch; ../make_input -aph 1.3 -ufraction 0.5 -kbola 0. -fbi 0. && lmp -in in.lmp -log out.log.cmd`
+-  a flexible bolalipid membrane patch $k_\mathrm{bola}=0$ is in `./archaeal_patch`.
+    - To reproduce, use the following command: `cd archaeal_patch; ../make_input -aph 1.3 -ufraction 0.5 -kbola 0. -fbi 0. && lmp -in in.lmp -log out.log.cmd`
+    - The movie above corresponds to this simulation.
+   
 
 ## Setup
 Install LAMMPS (version: 29 Aug 2024 or newer).
@@ -31,7 +39,4 @@ Edit `test/in.lmp` as needed.
 Run LAMMPS in the `test` directory:
 `(cd test; lmp -in in.lmp)`
 
-
-Visualize output files (we recommend Ovito).
-
-If using Ovito, create a pipeline by loading the `in.data` file containing topology and load the trajectory files `out.0.relax.traj.bin` and `out.1.main.traj.bin`.
+For visualizing trajectory files, we recommend Ovito: create a pipeline by loading the `in.data` file containing topology and load the trajectory files `out.0.relax.traj.bin` and `out.1.main.traj.bin`.
