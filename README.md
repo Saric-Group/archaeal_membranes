@@ -1,4 +1,4 @@
-# Archaeal membranes coarse-grained simulations : code & examples
+# Archaeal membranes : code & examples
 <p align="center">
     <img src="https://github.com/user-attachments/assets/36bb5261-fd3a-416e-8eb2-bff4eb069bf9" width="50%" height="50%"/>
 </p>
